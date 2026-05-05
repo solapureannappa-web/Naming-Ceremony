@@ -9,12 +9,34 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Lato&display=swap" rel="stylesheet"/>
 
 <style>
+
 body {
   margin:0;
   font-family:'Lato',sans-serif;
-  background:#fff8f0;
-  color:#3b1a2e;
+  background: url('IMG-20260505-WA0061.jpg') no-repeat center/cover;
+  height:100vh;
   overflow-x:hidden;
+}
+
+/* INTRO */
+#intro {
+  position:fixed;
+  inset:0;
+  background:#000;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:9999;
+}
+
+#intro button {
+  margin-top:20px;
+  padding:12px 30px;
+  border:none;
+  background:#f7c948;
+  border-radius:30px;
 }
 
 /* MUSIC */
@@ -35,174 +57,147 @@ body {
   z-index:999;
 }
 
-/* OVERLAY */
-#overlay {
-  position:fixed;
-  inset:0;
-  background:#3b1a2e;
-  color:white;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-}
-
-.start-btn {
-  margin-top:20px;
-  padding:15px 40px;
-  background:#f7c948;
-  border:none;
-  border-radius:40px;
-  font-weight:bold;
-  cursor:pointer;
-}
-
-/* HERO */
-.hero {
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
+/* GLASS CARD */
+.glass {
+  background: rgba(0,0,0,0.45);
+  backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 30px;
+  margin: 20px;
+  color: #fff;
   text-align:center;
-  background:linear-gradient(135deg,#fde8f0,#fff);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
 }
 
-.hero h1 {
-  font-family:'Playfair Display';
-  color:#e8416a;
+/* ANIMATION */
+.fade-up {
+  opacity:0;
+  transform: translateY(40px);
+  animation: fadeUp 1.5s ease forwards;
+}
+@keyframes fadeUp {
+  to { opacity:1; transform: translateY(0); }
 }
 
 /* BABY */
 .baby {
-  width:200px;
-  height:200px;
+  width:180px;
+  height:180px;
   border-radius:50%;
   overflow:hidden;
-  margin:20px 0;
+  margin:20px auto;
+  box-shadow:0 10px 40px rgba(0,0,0,0.5);
 }
-
 .baby img { width:100%; height:100%; object-fit:cover; }
 
-/* SECTION */
-.section { padding:60px 20px; text-align:center; }
-
-.card {
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 8px 30px rgba(0,0,0,0.1);
-}
-
-/* GALLERY */
-.gallery {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-.gallery img {
-  width:100%;
-  border-radius:10px;
-  cursor:pointer;
-}
-
-/* LIGHTBOX */
-.lightbox {
-  display:none;
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,0.9);
-  justify-content:center;
-  align-items:center;
-}
-.lightbox img {
-  max-width:90%;
-  border-radius:10px;
+/* NAME */
+#baby-name {
+  font-family:'Playfair Display';
+  font-size:32px;
+  color:#ffd166;
 }
 
 /* HEART */
 .heart {
   position:fixed;
-  animation:float 2s linear forwards;
+  font-size:20px;
+  animation: float 2s linear forwards;
 }
 @keyframes float {
   100% { transform:translateY(-150px); opacity:0; }
 }
 
 /* FLOWERS */
-.flower {
-  position:fixed;
-  animation:fall linear infinite;
-}
 @keyframes fall {
   100% { transform:translateY(100vh); opacity:0; }
 }
 
-/* BUTTONS */
+/* BUTTON */
 .btn {
-  margin-top:20px;
-  padding:12px 25px;
+  margin-top:15px;
+  padding:10px 20px;
   border:none;
-  border-radius:30px;
+  border-radius:25px;
   background:#e8416a;
   color:white;
   cursor:pointer;
 }
+
+/* POPUP */
+#popup {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.9);
+  color:white;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:2000;
+}
+
+.popup-box {
+  background:#3b1a2e;
+  padding:40px;
+  border-radius:20px;
+}
+
 </style>
 
 </head>
 
 <body>
 
+<!-- INTRO -->
+
+<div id="intro">
+  <h2>👶 Welcome</h2>
+  <p>नामकरण सोहळा आमंत्रण</p>
+  <button onclick="enter()">Enter</button>
+</div>
+
+<!-- AUDIO -->
+
 <audio id="audio" loop>
-<source src="https://raw.githubusercontent.com/solapureannappa-web/MinakshiBirthday/main/jaisemerat_NkIxrAeA.mp3">
+  <source src="https://raw.githubusercontent.com/solapureannappa-web/MinakshiBirthday/main/jaisemerat_NkIxrAeA.mp3">
 </audio>
 
 <div id="music-btn">🎵</div>
 
-<div id="overlay">
-  <h2>👶 नामकरण सोहळा</h2>
-  <button class="start-btn" onclick="start()">Open Invitation</button>
-</div>
+<!-- MAIN -->
 
-<div class="hero">
-  <h1>|| श्री गणेशाय नमः ||</h1>
+<div class="glass fade-up">
+
+  <h2>|| श्री गणेशाय नमः ||</h2>
+
   <h1>नामकरण सोहळा 💖</h1>
 
   <div class="baby">
-    <img src="IMG-20260505-WA0061.jpg">
+    <img src="baby.jpg">
   </div>
+
+  <h1 id="baby-name"></h1>
+
+  <p>👨 नागेश & 👩 रेखा</p>
+
+  <p>📅 19 मे 2025</p>
+  <p>⏰ 2:30 PM</p>
+
+  <p>📍 वेताळ नगर बार्शी रोड,<br>तुळजापूर, धाराशिव</p>
+
+<button class="btn" onclick="openMap()">📍 Map</button> <button class="btn" onclick="share()">📲 Share</button>
+
 </div>
 
-<div class="section">
-  <div class="card">
-    <h2>📅 तपशील</h2>
-    <p>👨 नागेश & 👩 रेखा</p>
-    <p>📅 19 मे 2025</p>
-    <p>⏰ 2:30 PM</p>
-    <p>📍 तुळजापूर, धाराशिव</p>
+<!-- POPUP -->
 
-```
-<button class="btn" onclick="openMap()">📍 Open Map</button>
-<button class="btn" onclick="share()">📲 Share</button>
-```
-
+<div id="popup">
+  <div class="popup-box">
+    💖 आपले स्वागत आहे 💖<br><br>
+    कृपया उपस्थित राहा 🙏
+    <br><br>
+    <button onclick="closePop()">Close</button>
   </div>
-</div>
-
-<div class="section">
-  <h2>📸 Moments</h2>
-  <div class="gallery">
-    <img src="img1.jpg" onclick="openImg(this.src)">
-    <img src="img2.jpg" onclick="openImg(this.src)">
-    <img src="img3.jpg" onclick="openImg(this.src)">
-    <img src="img4.jpg" onclick="openImg(this.src)">
-  </div>
-</div>
-
-<div class="lightbox" id="lightbox" onclick="this.style.display='none'">
-  <img id="lb">
 </div>
 
 <script>
@@ -210,9 +205,11 @@ body {
 const audio=document.getElementById('audio');
 let playing=false;
 
-function start(){
-  document.getElementById('overlay').style.display='none';
+/* ENTER */
+function enter(){
+  document.getElementById('intro').style.display='none';
   audio.play();
+  playing=true;
   firework();
 }
 
@@ -221,6 +218,18 @@ document.getElementById('music-btn').onclick=()=>{
   if(playing){audio.pause();playing=false;}
   else{audio.play();playing=true;}
 };
+
+/* NAME TYPE */
+const name="Baby Name";
+let i=0;
+function typeName(){
+  if(i<name.length){
+    document.getElementById('baby-name').innerHTML+=name.charAt(i);
+    i++;
+    setTimeout(typeName,120);
+  }
+}
+setTimeout(typeName,2000);
 
 /* HEART */
 document.addEventListener('click',e=>{
@@ -234,29 +243,26 @@ document.addEventListener('click',e=>{
 });
 
 /* FLOWERS */
-for(let i=0;i<8;i++){
-  let f=document.createElement('div');
-  f.className='flower';
-  f.innerHTML='🌸';
-  f.style.left=Math.random()*100+'vw';
-  f.style.animationDuration=5+Math.random()*5+'s';
-  document.body.appendChild(f);
-}
-
-/* LIGHTBOX */
-function openImg(src){
-  document.getElementById('lightbox').style.display='flex';
-  document.getElementById('lb').src=src;
+const items=['🌸','✨','💫','🌼'];
+for(let i=0;i<15;i++){
+  let el=document.createElement('div');
+  el.innerHTML=items[Math.floor(Math.random()*items.length)];
+  el.style.position='fixed';
+  el.style.left=Math.random()*100+'vw';
+  el.style.top='-20px';
+  el.style.fontSize='20px';
+  el.style.animation=`fall ${5+Math.random()*5}s linear infinite`;
+  document.body.appendChild(el);
 }
 
 /* FIREWORK */
 function firework(){
-  for(let i=0;i<20;i++){
+  for(let i=0;i<25;i++){
     let d=document.createElement('div');
     d.style.position='fixed';
     d.style.width='6px';
     d.style.height='6px';
-    d.style.background='red';
+    d.style.background='gold';
     d.style.left='50%';
     d.style.top='50%';
     document.body.appendChild(d);
@@ -266,13 +272,28 @@ function firework(){
 
 /* MAP */
 function openMap(){
-  window.open("https://maps.google.com");
+  window.open("https://maps.google.com/?q=Tuljapur, Dharashiv");
 }
 
 /* SHARE */
 function share(){
-  let msg="नामकरण सोहळा आमंत्रण 👶";
+  let msg=`👶 नामकरण सोहळा
+
+📅 19 मे 2025
+⏰ 2:30 PM
+📍 तुळजापूर
+
+आपले सहर्ष स्वागत आहे 💖`;
   window.open(`https://wa.me/?text=${encodeURIComponent(msg)}`);
+}
+
+/* POPUP */
+setTimeout(()=>{
+  document.getElementById('popup').style.display='flex';
+},15000);
+
+function closePop(){
+  document.getElementById('popup').style.display='none';
 }
 
 </script>
